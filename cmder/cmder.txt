@@ -1,0 +1,181 @@
+;= @echo off
+;= rem Call DOSKEY and use this file as the macrofile
+;= %SystemRoot%\system32\doskey /listsize=1000 /macrofile=%0%
+;= rem In batch mode, jump to the end of the file
+;= goto:eof
+;= Add aliases below here
+e.=explorer .
+gl=git log --oneline --all --graph --decorate  $*
+ls=ls --show-control-chars -F --color $*
+pwd=cd
+clear=cls
+history=cat -n "%CMDER_ROOT%\config\.history"
+unalias=alias /d $1
+vi=vim $*
+cmderr=cd /d "%CMDER_ROOT%"
+
+_history=cat "C:\Cmder\config\.history"
+
+
+lsa=ls -a --show-control-chars -F --color $*
+exp=explorer $*
+rmrf=rm -rf $*
+bzsh=bash -c zsh
+
+rem ===============================  GIT  ===============================
+gs=git status $*
+ga.=git add .
+glg=git log $*
+gc=git commit $*
+gd=git diff $*
+gcm=git commit -m "$*"
+gpl=git pull $*
+gps=git push $*
+gplgit=git pull github master $*
+gpsbit=git push bitbucket master $*
+gpsgit=git push github master $*
+gaa=git add . $*
+grv=git remote -v $*
+gplbit=git pull bitbucket master $*
+glp=git log-pretty $*
+gplom=git pull origin master $*
+gpsom=git push origin master $*
+gi=git init $*
+gck=git checkout $*
+gm=git merge $*
+gb=git branch $*
+gcl=git clone $*
+grfl=git reflog $*
+gplo=git pull origin $*
+gpso=git push origin $*
+gr=git reset $*
+grh=git reset --hard $*
+ga=git add $*
+grhh=git reset --hard HEAD $*
+grs=git reset --soft $*
+grm=git rm $*
+mkrmt=curl -H "Authorization: token f85b7def3ed584ebb1788f92a08f5454e448649b" -H "Accept: application/vnd.github.v3+json" https://api.github.com/user/repos -d "{\"name\": \"$1\"}" $t git remote add origin https://github.com/drissboumlik/$1.git $t git push -u origin master
+initrmt=git init $t curl -H "Authorization: token f85b7def3ed584ebb1788f92a08f5454e448649b" -H "Accept: application/vnd.github.v3+json" https://api.github.com/user/repos -d "{\"name\": \"$1\"}" $t git remote add origin https://github.com/drissboumlik/$1.git
+
+rem ===============================  NPM  ===============================
+nu=npm update $*
+ni=npm install $*
+nrs=npm run serve $*
+nrd=npm run dev $*
+nrb=npm run build $*
+nrw=npm run watch $*
+
+rem ===============================  ANGULAR  ===============================
+ngs=ng serve $*
+ngsnr=ng serve --no-live-reload $*  
+ngsa=ng serve --aot $*
+ngsanr=ng serve --aot --no-live-reload $*  
+nggc=ng generate component --skipTests $*
+nggcs=ng generate component $*
+nggs=ng generate service --spec=false $*
+nggd=ng generate directive --spec=false $*
+nggds=ng generate directive $*
+nggm=ng generate module $*
+nggp=ng generate pipe --skipTests $*  
+nggps=ng generate pipe $*  
+nggg=ng generate guard --skipTests $*  
+
+
+rem ===============================  LARAVEL  ===============================
+ci=composer install $*
+cu=composer update $*
+cmpref=composer dump-autoload $*
+punit=.\vendor\bin\phpunit $*
+pamk=php artisan make:$*
+pav=php artisan --version $*
+pamkrc=php artisan make:resource $*ResourceCollection
+pam=php artisan migrate $*
+pas=php artisan serve $*
+pa=php artisan $*
+pamfs=php artisan migrate:fresh --seed $*
+pamfspi=php artisan migrate:fresh --seed $t php artisan passport:install --force $*  
+parl=php artisan route:list $*
+pamf=php artisan migrate:fresh $*
+pamkmm=php artisan make:model $1 -m
+pamkmmc=php artisan make:model $1 -m -c
+pamkmmcr=php artisan make:model $1 -m -c -r
+pash=php artisan serve --host $*
+pasp=php artisan serve --port $*
+pasph=php artisan serve --port $1 --host $2
+pashp=php artisan serve --host $1 --port $2
+pamkmdl=php artisan make:model $*
+pamkc=php artisan make:controller $*Controller
+pamkmg=php artisan make:migration create_$*_table
+pamkcr=php artisan make:controller $*Controller -r
+pams=php artisan migrate --seed $*
+pamkr=php artisan make:resource $*Resource
+pamkf=php artisan make:factory $1Factory --model=$1
+pamkfm=php artisan make:factory $1Factory --model=$2
+pat=php artisan tinker $*
+padbs=php artisan db:seed $*
+pamks=php artisan make:seeder $1sTableSeeder
+pamkfsd=php artisan make:factory $1Factory --model=$1 $t php artisan make:seeder $1sTableSeeder
+pakg=php artisan key:generate $*
+pamkcmp=php artisan make:component $*
+pamkall=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sTableSeeder
+pamkallmdl=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $2sTableSeeder
+pamkallmdlsd=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $3TableSeeder
+pamkallsd=php artisan make:model $1 -m -c -f $t php artisan make:seeder $2TableSeeder
+rfl=composer dumpautoload $t php artisan optimize $t php artisan cache:clear $t php artisan view:clear
+pamkallr=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sTableSeeder $t php artisan make:resource $1Resource
+rld=git pull origin master $t composer dumpautoload $t php artisan optimize $t php artisan cache:clear $t php artisan view:clear $t npm run dev $*
+pamkj=php artisan make:job $*Job  
+pamke=php artisan make:event $*Event  
+
+rem ===============================  SVN  ===============================
+ss=svn status $*
+sp=svn update $*
+
+rem ===============================  DOCKER  ===============================
+dc=docker-compose $*
+dk=docker $*
+dps=docker ps $*
+dpsa=docker ps -a $*
+dkll=docker kill $*
+rmcn=docker container rm $*
+rmim=docker image rm $*
+dcx=docker-compose exec $*
+dkimls=docker image ls $*
+dksp=docker system prune $*
+dkspa=docker system prune -a $*
+dkim=docker image $*
+dkims=docker images $*
+dkimsa=docker images -a $*
+
+rem ===============================  EXE  ===============================
+npp="C:\Program Files\Notepad++\notepad++.exe" $*
+
+rem ===============================  CD..  ===============================
+.ssh=cd "C:\Users\Driss Boumlik\.ssh\" $t C:
+desktop=cd "C:\Users\Driss Boumlik\Desktop\" $t C:
+_desktop=cd "C:\Users\Driss Boumlik\Documents\_Desktop" $t C:
+teach=cd "E:\_Shortcuts\_Projects\0.Teaching\tracking-tickets-app" $t E:
+projects=cd "E:\_Shortcuts\_Projects\" $t E:
+lnks=cd "E:\_Shortcuts" $t E:
+work=cd "E:\_Shortcuts\_Work" $t E:
+teacode=cd "E:\_Shortcuts\_Teacode\Code\website\TeaCode_Platform\" $t E:
+tc=cd "E:\_Shortcuts\_Teacode\Code\website\TeaCode_Platform\" $t E:
+learn=cd "E:\_Shortcuts\_Learn\Watch" $t E:
+course=cd "E:\_Shortcuts\_Teacode\Recording\Courses\Laravel - Ticket App\Course Projects\Live Projects\New + Old version\IssueTracker\" $t E:
+home=cd "C:\Users\Driss Boumlik\" $t C:
+global=cd "E:\_Shortcuts\_Global Assets" $t E:
+github=cd "C:\Users\Driss Boumlik\Documents\GitHub" $t C:
+resume=cd "E:\_Shortcuts\_Teacode\Code\website\resume\TeaCodeOff_MyResume\" $t E:
+
+cdgf=cd "E:\_Shortcuts\_Work\Freelancing\Grintaaa\Code\Grinta-front\" $t E:
+cdgb=cd "E:\_Shortcuts\_Work\Freelancing\Grintaaa\Code\Grinta-back\" $t E:
+cdgca=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionCA\" $t E:  
+cdgie=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionIE\" $t E:  
+b2b=cd E:\_Shortcuts\_Work\Job\RC2K\free\b2b $t E:  
+
+rem ===============================  SSH  ===============================
+debian=ssh teacode@192.168.117.132
+centos=ssh teacode@192.168.117.130
+grinta=ssh dboumlik@web.essorline.com  
+rlab=ssh rc2k@81.192.187.150  
+ubuntu=ssh teacode@192.168.117.133  
