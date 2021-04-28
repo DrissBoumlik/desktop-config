@@ -5,7 +5,6 @@
 ;= goto:eof
 ;= Add aliases below here
 e.=explorer .
-gl=git log --oneline --all --graph --decorate  $*
 ls=ls --show-control-chars -F --color $*
 pwd=cd
 clear=cls
@@ -24,8 +23,14 @@ bzsh=bash -c zsh
 
 rem ===============================  GIT  ===============================
 gs=git status $*
+ga=git add $*
 ga.=git add .
+gaa=git add . $*
 glg=git log $*
+glp=git log-pretty $*
+glf=git log-pretty | tail -n $*
+gll=git log-pretty -n $*
+gl=git log --oneline --all --graph --decorate  $*
 gc=git commit $*
 gd=git diff $*
 gcm=git commit -m "$*"
@@ -34,14 +39,13 @@ gps=git push $*
 gplgit=git pull github master $*
 gpsbit=git push bitbucket master $*
 gpsgit=git push github master $*
-gaa=git add . $*
 grv=git remote -v $*
 gplbit=git pull bitbucket master $*
-glp=git log-pretty $*
 gplom=git pull origin master $*
 gpsom=git push origin master $*
 gi=git init $*
 gck=git checkout $*
+gckp=git checkout @{-$*}
 gm=git merge $*
 gb=git branch $*
 gcl=git clone $*
@@ -50,7 +54,7 @@ gplo=git pull origin $*
 gpso=git push origin $*
 gr=git reset $*
 grh=git reset --hard $*
-ga=git add $*
+nah=git reset --hard $t git clean -df
 grhh=git reset --hard HEAD $*
 grs=git reset --soft $*
 grm=git rm $*
@@ -64,21 +68,25 @@ nrs=npm run serve $*
 nrd=npm run dev $*
 nrb=npm run build $*
 nrw=npm run watch $*
+nrp=npm run prod $*
 
 rem ===============================  ANGULAR  ===============================
 ngs=ng serve $*
-ngsnr=ng serve --no-live-reload $*  
+ngsp=ng serve --port $*
+ngsnr=ng serve --no-live-reload $*
 ngsa=ng serve --aot $*
-ngsanr=ng serve --aot --no-live-reload $*  
-nggc=ng generate component --skipTests $*
-nggcs=ng generate component $*
-nggs=ng generate service --spec=false $*
-nggd=ng generate directive --spec=false $*
-nggds=ng generate directive $*
+ngsanr=ng serve --aot --no-live-reload $*
+nggc=ng generate component $*
+nggs=ng generate service $*
+nggd=ng generate directive $*
 nggm=ng generate module $*
-nggp=ng generate pipe --skipTests $*  
-nggps=ng generate pipe $*  
-nggg=ng generate guard --skipTests $*  
+nggp=ng generate pipe $*
+nggg=ng generate guard $*
+
+
+rem ===============================  PHP (XDEBUG)  ===============================
+exd=cp "E:\_Shortcuts\_Global Assets\Assets\Php\exd7-3.php.ini" "c:/xampp/php/php.ini"
+dxd=cp "E:\_Shortcuts\_Global Assets\Assets\Php\dxd7-3.php.ini" "c:/xampp/php/php.ini"
 
 
 rem ===============================  LARAVEL  ===============================
@@ -88,12 +96,11 @@ cmpref=composer dump-autoload $*
 punit=.\vendor\bin\phpunit $*
 pamk=php artisan make:$*
 pav=php artisan --version $*
-pamkrc=php artisan make:resource $*ResourceCollection
 pam=php artisan migrate $*
 pas=php artisan serve $*
 pa=php artisan $*
 pamfs=php artisan migrate:fresh --seed $*
-pamfspi=php artisan migrate:fresh --seed $t php artisan passport:install --force $*  
+pamfspi=php artisan migrate:fresh --seed $t php artisan passport:install --force $*
 parl=php artisan route:list $*
 pamf=php artisan migrate:fresh $*
 pamkmm=php artisan make:model $1 -m
@@ -109,23 +116,25 @@ pamkmg=php artisan make:migration create_$*_table
 pamkcr=php artisan make:controller $*Controller -r
 pams=php artisan migrate --seed $*
 pamkr=php artisan make:resource $*Resource
+pamkrc=php artisan make:resource $*Collection
+pamkrq=php artisan make:request $*Request
 pamkf=php artisan make:factory $1Factory --model=$1
 pamkfm=php artisan make:factory $1Factory --model=$2
 pat=php artisan tinker $*
 padbs=php artisan db:seed $*
-pamks=php artisan make:seeder $1sTableSeeder
-pamkfsd=php artisan make:factory $1Factory --model=$1 $t php artisan make:seeder $1sTableSeeder
+pamks=php artisan make:seeder $1sSeeder
+pamkfsd=php artisan make:factory $1Factory --model=$1 $t php artisan make:seeder $1sSeeder
 pakg=php artisan key:generate $*
 pamkcmp=php artisan make:component $*
-pamkall=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sTableSeeder
-pamkallmdl=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $2sTableSeeder
-pamkallmdlsd=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $3TableSeeder
-pamkallsd=php artisan make:model $1 -m -c -f $t php artisan make:seeder $2TableSeeder
+pamkall=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sSeeder
+pamkallmdl=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $2sSeeder
+pamkallmdlsd=php artisan make:model $1/$2 -m -c -f $t php artisan make:seeder $3sSeeder
+pamkallsd=php artisan make:model $1 -m -c -f $t php artisan make:seeder $2sSeeder
 rfl=composer dumpautoload $t php artisan optimize $t php artisan cache:clear $t php artisan view:clear
-pamkallr=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sTableSeeder $t php artisan make:resource $1Resource
+pamkallr=php artisan make:model $1 -m -c -f $t php artisan make:seeder $1sSeeder $t php artisan make:resource $1Resource
 rld=git pull origin master $t composer dumpautoload $t php artisan optimize $t php artisan cache:clear $t php artisan view:clear $t npm run dev $*
-pamkj=php artisan make:job $*Job  
-pamke=php artisan make:event $*Event  
+pamkj=php artisan make:job $*Job
+pamke=php artisan make:event $*Event
 
 rem ===============================  SVN  ===============================
 ss=svn status $*
@@ -155,27 +164,26 @@ rem ===============================  CD..  ===============================
 desktop=cd "C:\Users\Driss Boumlik\Desktop\" $t C:
 _desktop=cd "C:\Users\Driss Boumlik\Documents\_Desktop" $t C:
 teach=cd "E:\_Shortcuts\_Projects\0.Teaching\tracking-tickets-app" $t E:
+tc=cd E:\_Shortcuts\_Teacode $t E:
+tcsite=cd E:\_Shortcuts\_Teacode\Brand\Code\platform\teacode.ma $t E:
+tcblog=cd E:\_Shortcuts\_Teacode\Brand\Code\platform\blog.teacode.ma $t E:
+tccv=cd E:\_Shortcuts\_TeaCode\Brand\Code\platform\resume $t E:
 projects=cd "E:\_Shortcuts\_Projects\" $t E:
 lnks=cd "E:\_Shortcuts" $t E:
 work=cd "E:\_Shortcuts\_Work" $t E:
-teacode=cd "E:\_Shortcuts\_Teacode\Code\website\TeaCode_Platform\" $t E:
-tc=cd "E:\_Shortcuts\_Teacode\Code\website\TeaCode_Platform\" $t E:
 learn=cd "E:\_Shortcuts\_Learn\Watch" $t E:
-course=cd "E:\_Shortcuts\_Teacode\Recording\Courses\Laravel - Ticket App\Course Projects\Live Projects\New + Old version\IssueTracker\" $t E:
 home=cd "C:\Users\Driss Boumlik\" $t C:
 global=cd "E:\_Shortcuts\_Global Assets" $t E:
 github=cd "C:\Users\Driss Boumlik\Documents\GitHub" $t C:
-resume=cd "E:\_Shortcuts\_Teacode\Code\website\resume\TeaCodeOff_MyResume\" $t E:
 
 cdgf=cd "E:\_Shortcuts\_Work\Freelancing\Grintaaa\Code\Grinta-front\" $t E:
 cdgb=cd "E:\_Shortcuts\_Work\Freelancing\Grintaaa\Code\Grinta-back\" $t E:
-cdgca=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionCA\" $t E:  
-cdgie=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionIE\" $t E:  
-b2b=cd E:\_Shortcuts\_Work\Job\RC2K\free\b2b $t E:  
+cdgca=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionCA\" $t E:
+cdgie=cd "E:\_Shortcuts\_Work\Job\RC2K\Circet\gestionIE\" $t E: 
+cdb2b=cd E:\_Shortcuts\_Work\Job\RC2K\free\b2b\b2b $t E: 
 
 rem ===============================  SSH  ===============================
 debian=ssh teacode@192.168.117.132
-centos=ssh teacode@192.168.117.130
+ubuntu=ssh teacode@192.168.117.134
 grinta=ssh dboumlik@web.essorline.com  
 rlab=ssh rc2k@81.192.187.150  
-ubuntu=ssh teacode@192.168.117.133  
