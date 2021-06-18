@@ -18,6 +18,7 @@ _history=cat "C:\Cmder\config\.history"
 
 lsa=ls -a --show-control-chars -F --color $*
 exp=explorer $*
+e=explorer $*
 rmrf=rm -rf $*
 bzsh=bash -c zsh
 
@@ -167,7 +168,9 @@ teach=cd "E:\_Shortcuts\_Projects\0.Teaching\tracking-tickets-app" $t E:
 tc=cd E:\_Shortcuts\_Teacode $t E:
 tcsite=cd E:\_Shortcuts\_Teacode\Brand\Code\platform\teacode.ma $t E:
 tcblog=cd E:\_Shortcuts\_Teacode\Brand\Code\platform\blog.teacode.ma $t E:
-tccv=cd E:\_Shortcuts\_TeaCode\Brand\Code\platform\resume $t E:
+oldcv=cd E:\_Shortcuts\_TeaCode\Brand\Code\platform\resume $t E:
+db=cd E:\_Shortcuts\_Teacode\Brand\Code\platform\drissboumlik.com $t E:
+
 projects=cd "E:\_Shortcuts\_Projects\" $t E:
 lnks=cd "E:\_Shortcuts" $t E:
 work=cd "E:\_Shortcuts\_Work" $t E:
