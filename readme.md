@@ -1,9 +1,12 @@
-Personnal aliases for most used command line statements
+## List of apps
 
-* cmder
-	* cmder.txt > aliases for cmder (windows)
-	* readme.md > instructions / links to follow
+* [LightShot](https://app.prntscr.com/en/index.html)
+* [Ditto](https://ditto-cp.sourceforge.io/)
+* [Cmder](https://cmder.app/)
+* [Wox](http://www.wox.one/)
 
-* zsh
-	* zsh.txt > aliases for zsh (same aliases works for bash) (linux)
-	* readme.md > instructions / links to follow
+## Personnal aliases for most used command line statements
+
+* wox-themes > Predefined xaml themes files
+* terminal/cmder > aliases for cmder (windows) + xml file for config
+* terminal/zsh > aliases for zsh (same aliases works for bash) (linux)
